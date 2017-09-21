@@ -1,0 +1,3 @@
+# hangman
+
+python main.py
