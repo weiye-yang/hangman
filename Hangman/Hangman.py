@@ -6,8 +6,7 @@ class Hangman(object):
         self.answer = ""
         self.currentState = []
         self.lives = 6
-        self.guessedLetters = []
-    capsletters = string.ascii_uppercase
+        self.guessedLetters = set()
     letters = string.ascii_letters
     
     def reset(self): #resets game, and generates new answer. must be called at start of game
@@ -16,10 +15,10 @@ class Hangman(object):
             
         self.answer = random.choice(sowpods)
         self.currentState = []
-        for i in range(0,len(self.answer)):
+        for i in self.answer:
             self.currentState.append("_")
         self.lives = 6
-        self.guessedLetters = []
+        self.guessedLetters = set()
             
     def guess(self):#guess a single letter, which hasn't been guessed before. It gets added to guessedLetters
         guessLetter = ""
@@ -29,7 +28,7 @@ class Hangman(object):
             if guessLetter in self.guessedLetters:
                 print("You have already guessed that letter.")
         
-        self.guessedLetters.append(guessLetter)
+        self.guessedLetters.add(guessLetter)
         return guessLetter
     
     def evalLetter(self, letter):#check if a letter is in the answer, if it is, change some underscores to the letter
@@ -55,4 +54,4 @@ class Hangman(object):
 
 if __name__ == "__main__":
     game = Hangman()
-    print("hello")
+    print(game.answer)
